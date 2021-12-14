@@ -78,6 +78,7 @@ resource "aws_iam_role" "efs_csi_driver" {
   count              = var.enabled ? 1 : 0
   name               = "${var.cluster_name}-efs-csi-driver"
   assume_role_policy = data.aws_iam_policy_document.efs_csi_driver_assume[0].json
+  permissions_boundary  = var.permissions_boundary
 }
 
 resource "aws_iam_role_policy_attachment" "efs_csi_driver" {
